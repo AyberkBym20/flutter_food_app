@@ -10,6 +10,6 @@ class MealsPage extends StatefulWidget {
 class _MealsPageState extends State<MealsPage> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(appBar: AppBar(title: Text('Meals')));
   }
 }
