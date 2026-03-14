@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import 'package:flutter_food_app/models/meal_models.dart';
 
 class MealDaoRepo {
@@ -17,6 +16,3 @@ class MealDaoRepo {
     return list;
   }
 }
-=======
-class MealDaoRepo {}
->>>>>>> feature/mealdao-repo
