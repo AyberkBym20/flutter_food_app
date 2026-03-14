@@ -22,6 +22,7 @@ class _DetailPageState extends State<DetailPage> {
             Image.asset(widget.model.imageUrl),
             Text(widget.model.name),
             Text(widget.model.price.toString()),
+            ElevatedButton(onPressed: () {}, child: const Text('Add to cart')),
           ],
         ),
       ),
