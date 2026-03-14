@@ -40,6 +40,7 @@ class _MealsPageState extends State<MealsPage> {
                       Expanded(child: Image.asset(meal.imageUrl)),
                       Text(meal.name),
                       Text('${meal.price}'),
+                      ElevatedButton(onPressed: () {}, child: Text('Add')),
                     ],
                   ),
                 );
