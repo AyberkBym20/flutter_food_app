@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_food_app/features/meals/presentation/cubit/meals_cubit.dart';
+import 'package:flutter_food_app/features/meals/presentation/detail_page.dart';
 import 'package:flutter_food_app/models/meal_models.dart';
 
 class MealsPage extends StatefulWidget {
@@ -40,7 +41,17 @@ class _MealsPageState extends State<MealsPage> {
                       Expanded(child: Image.asset(meal.imageUrl)),
                       Text(meal.name),
                       Text('${meal.price}'),
-                      ElevatedButton(onPressed: () {}, child: Text('Add')),
+                      ElevatedButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => DetailPage(model: meal),
+                            ),
+                          );
+                        },
+                        child: Text('Add'),
+                      ),
                     ],
                   ),
                 );
