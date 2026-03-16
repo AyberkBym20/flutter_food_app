@@ -1,31 +1,38 @@
+import 'dart:convert';
+
+import 'package:flutter_food_app/features/meals/presentation/data/meal_remote_data_source.dart';
 import 'package:flutter_food_app/models/meal_models.dart';
 
 class MealDaoRepo {
+  List<MealModels> parseMeals(String answer) {
+    return MealRemoteDataSource.fromJson(json.decode(answer)).meal;
+  }
+
   Future<List<MealModels>> mealsUpdate() async {
     var list = <MealModels>[];
 
     var meal1 = MealModels(
-      id: 1,
+      id: '1',
       name: 'Ayran',
       imageUrl: 'image/ayran.jpg',
       price: 25,
     );
 
     var meal2 = MealModels(
-      id: 2,
+      id: '2',
       name: 'Köfte',
       imageUrl: 'image/köfte.png',
       price: 50,
     );
 
     var meal3 = MealModels(
-      id: 3,
+      id: '3',
       name: 'Pilav',
       imageUrl: 'image/pilav.jpg',
       price: 75,
     );
     var meal4 = MealModels(
-      id: 4,
+      id: '4',
       name: 'Pilav',
       imageUrl: 'image/pilav.jpg',
       price: 100,
