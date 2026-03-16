@@ -1,5 +1,5 @@
 class MealModels {
-  final int id;
+  final String id;
   final String name;
   final String imageUrl;
   final int price;
@@ -10,4 +10,12 @@ class MealModels {
     required this.imageUrl,
     required this.price,
   });
+  factory MealModels.fromJson(Map<String, dynamic> json) {
+    return MealModels(
+      id: json['yemek_id'] as String,
+      name: json['yemek_adi'] as String,
+      imageUrl: json['yemek_resim_adi'] as String,
+      price: ['yemek_fiyat'] as int,
+    );
+  }
 }
