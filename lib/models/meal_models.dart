@@ -11,10 +11,11 @@ class MealModels {
     required this.price,
   });
   factory MealModels.fromJson(Map<String, dynamic> json) {
+    String baseUrl = "http://kasimadalan.pe.hu/yemekler/resimler/";
     return MealModels(
       id: json['yemek_id'] as String,
       name: json['yemek_adi'] as String,
-      imageUrl: json['yemek_resim_adi'] as String,
+      imageUrl: "$baseUrl${json['yemek_resim_adi']}",
       price: int.parse(json['yemek_fiyat'].toString()),
     );
   }
