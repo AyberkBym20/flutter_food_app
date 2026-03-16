@@ -38,7 +38,16 @@ class _MealsPageState extends State<MealsPage> {
                   color: Colors.white,
                   child: Column(
                     children: [
-                      Expanded(child: Image.asset(meal.imageUrl)),
+                      Expanded(
+                        child: Image.network(
+                          meal.imageUrl,
+
+                          fit: BoxFit.cover,
+                          errorBuilder: (context, error, stackTrace) {
+                            return const Icon(Icons.broken_image);
+                          },
+                        ),
+                      ),
                       Text(meal.name),
                       Text('${meal.price}'),
                       ElevatedButton(
