@@ -15,7 +15,7 @@ class MealModels {
       id: json['yemek_id'] as String,
       name: json['yemek_adi'] as String,
       imageUrl: json['yemek_resim_adi'] as String,
-      price: ['yemek_fiyat'] as int,
+      price: int.parse(json['yemek_fiyat'].toString()),
     );
   }
 }
