@@ -41,7 +41,6 @@ class _MealsPageState extends State<MealsPage> {
                       Expanded(
                         child: Image.network(
                           meal.imageUrl,
-
                           fit: BoxFit.cover,
                           errorBuilder: (context, error, stackTrace) {
                             return const Icon(Icons.broken_image);
