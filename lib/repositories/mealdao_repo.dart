@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_food_app/features/meals/presentation/data/meal_remote_data_source.dart';
+import 'package:flutter_food_app/features/meals/presentation/detail_page.dart';
 import 'package:flutter_food_app/models/meal_models.dart';
 import 'dart:convert';
 
@@ -39,5 +40,23 @@ class MealDaoRepo {
     } catch (e) {
       print("Sepete ekleme hatası: $e");
     }
+  }
+
+  Future<List<MealModels>> detailPageUpload(String userName) async {
+    var url = "http://kasimadalan.pe.hu/yemekler/sepettekiYemekleriGetir.php";
+    var data = {"kullanici_adi": userName};
+    try {
+      var answer = await _dio.post(url, data: FormData.fromMap(data));
+
+      return parseMeals(answer.data);
+    } catch (e) {
+      return [];
+    }
+  }
+
+  Future<void> cartDelete(int cartFoodId, String username) async {
+    var url = "http://kasimadalan.pe.hu/yemekler/sepettenYemekSil.php";
+    var data = {"sepet_yemek_id": cartFoodId, "kullanici_adi": username};
+    await _dio.post(url, data: FormData.fromMap(data));
   }
 }
