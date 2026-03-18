@@ -1,15 +1,21 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_food_app/features/meals/presentation/data/cart_response.dart';
 import 'package:flutter_food_app/features/meals/presentation/data/meal_remote_data_source.dart';
-import 'package:flutter_food_app/features/meals/presentation/detail_page.dart';
+import 'package:flutter_food_app/models/cart_model.dart';
 import 'package:flutter_food_app/models/meal_models.dart';
 import 'dart:convert';
 
 class MealDaoRepo {
   final Dio _dio = Dio();
-
   List<MealModels> parseMeals(dynamic answer) {
     final Map<String, dynamic> decodedData = jsonDecode(answer as String);
     return MealRemoteDataSource.fromJson(decodedData).meal;
+  }
+
+  List<CartMeals> parseCart(dynamic answer) {
+    final Map<String, dynamic> decodedData = jsonDecode(answer as String);
+
+    return CartResponse.fromJson(decodedData).cartMeals;
   }
 
   Future<List<MealModels>> mealsUpdate() async {
@@ -26,7 +32,6 @@ class MealDaoRepo {
     required String userName,
   }) async {
     var url = "http://kasimadalan.pe.hu/yemekler/sepeteYemekEkle.php";
-
     var data = {
       "yemek_adi": foodName,
       "yemek_resim_adi": foodImage,
@@ -34,7 +39,6 @@ class MealDaoRepo {
       "yemek_siparis_adet": foodOrderAmount,
       "kullanici_adi": userName,
     };
-
     try {
       await _dio.post(url, data: FormData.fromMap(data));
     } catch (e) {
@@ -42,13 +46,12 @@ class MealDaoRepo {
     }
   }
 
-  Future<List<MealModels>> detailPageUpload(String userName) async {
+  Future<List<CartMeals>> getCartMeals(String userName) async {
     var url = "http://kasimadalan.pe.hu/yemekler/sepettekiYemekleriGetir.php";
     var data = {"kullanici_adi": userName};
     try {
       var answer = await _dio.post(url, data: FormData.fromMap(data));
-
-      return parseMeals(answer.data);
+      return parseCart(answer.data);
     } catch (e) {
       return [];
     }

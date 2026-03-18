@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_food_app/features/meals/presentation/cart_page.dart';
 import 'package:flutter_food_app/features/meals/presentation/cubit/detail_cubit.dart';
 import 'package:flutter_food_app/features/meals/presentation/cubit/meals_cubit.dart';
 
@@ -63,6 +64,10 @@ class _DetailPageState extends State<DetailPage> {
                         SnackBar(
                           content: Text('${widget.model.name} sepete eklendi'),
                         ),
+                      );
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => CartPage()),
                       );
                     });
               },
