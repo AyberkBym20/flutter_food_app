@@ -10,7 +10,9 @@ class DetailCubit extends Cubit<int> {
   }
 
   void decrement() {
-    emit(state + 1);
+    if (state > 0) {
+      emit(state - 1);
+    }
   }
 
   Future<void> addToCart({
